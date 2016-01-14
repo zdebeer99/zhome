@@ -14,6 +14,10 @@ zhome is a home automation service that allows you to turn lights on and off usi
 
 ## Compiling
 
+You will need to compile the client side first, see 'client/ReadMe.md'
+
+Then you can compile the go project.
+
 Raspberry Pi
 
 You can update the build_pi.sh script and update_pi_config.sh script in the scripts folder to build the code for the raspberry and copy the files onto the raspberry pi.
