@@ -1,0 +1,10 @@
+[Unit]
+Description=Qwik Switch USB Service
+After=network.target
+
+[Service]
+Type=idle
+ExecStart=/usr/bin/QSUSB_linux/QSUSB/qsusb
+
+[Install]
+WantedBy=multi-user.target

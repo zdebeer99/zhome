@@ -1,0 +1,7 @@
+.md-list-item-text(ng-click="refresh(item)")
+  h2 {{item.state.value.temp}} &deg;C
+  h3 Humidity {{item.state.value.hum}}  
+  small {{item.state.statusText}} {{fromNow(item.state.lastUpdate)}}
+.md-list-item-text()
+  //- md-button(ng-href="/charts#/view/{{item.info.id}}" ) Chart
+md-divider

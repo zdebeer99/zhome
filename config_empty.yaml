@@ -1,0 +1,26 @@
+InfluxServer : 10.0.0.115/zhome
+BindAddress : ":3001"
+Devices :
+  - Name : ""
+    Enabled : false
+    Description : ""
+    Tags : [""]
+    DeviceType: ""
+    Connection : ""
+    Channels :
+      - Name : ""
+        Enabled : false
+        Description : ""
+        Tags : [""]
+        ChannelType : ""
+        Address : ""
+Scheduler :
+  - Name : ""
+    When : ""
+    Command :
+      - ""
+Trigger :
+  - Name : ""
+    EventName : ""
+    Command :
+      - ""

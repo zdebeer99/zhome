@@ -1,0 +1,8 @@
+.md-list-item-text
+  h3 {{item.info.description}}  
+  small {{item.state.statusText}} {{fromNow(item.state.lastUpdate)}}
+md-switch(ng-model="item.state.value.value"
+  ng-change="valueChanged(item)"
+  ng-true-value="'on'"
+  ng-false-value="'off'")
+md-divider

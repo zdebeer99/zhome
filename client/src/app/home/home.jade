@@ -1,0 +1,4 @@
+md-content
+  md-list
+    md-list-item.md-3-line(ng-repeat="item in model|orderBy:'info.name'" ng-include="channelTemplate(item.info.channelType)")
+      

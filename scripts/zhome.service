@@ -1,0 +1,11 @@
+[Unit]
+Description=ZHOME web and controller server
+After=network.target
+
+[Service]
+Type=idle
+WorkingDirectory=/home/pi/zhome_pi/
+ExecStart=/home/pi/zhome_pi/zhome_pi
+
+[Install]
+WantedBy=multi-user.target
