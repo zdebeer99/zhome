@@ -22,6 +22,16 @@ Raspberry Pi
 
 You can update the build_pi.sh script and update_pi_config.sh script in the scripts folder to build the code for the raspberry and copy the files onto the raspberry pi.
 
+## Project Overview
+
+** Folders **
+
+* Arduino - Contains the ino files for the arduino board.
+* client - Contains the html and javascript files for the front end.
+* pkg - contains the go source files for the backend server.
+* scripts - some helper scripts for compiling and uploading to a raspberry pi. for development I use gin to continuesly reload the project while developing.
+
+
 ## LICENSE
 
 MIT
