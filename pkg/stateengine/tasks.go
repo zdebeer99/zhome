@@ -7,7 +7,7 @@ This is a draft quick hack to log tempreture every 10 min. Must be updated to sc
 import (
 	"container/list"
 	"time"
-	//"zdebeer/qwickswitch/server/data"
+	//"github.com/zdebeer99/zhome/pkg/data"
 )
 
 func (this *StateEngine) startTaskWorker() {

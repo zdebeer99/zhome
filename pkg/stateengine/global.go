@@ -1,7 +1,7 @@
 package stateengine
 
 import (
-	"zdebeer/qwickswitch/server/config"
+	"github.com/zdebeer99/zhome/pkg/config"
 )
 
 var State = New()

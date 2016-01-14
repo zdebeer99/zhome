@@ -24,7 +24,7 @@ You can update the build_pi.sh script and update_pi_config.sh script in the scri
 
 ## Project Overview
 
-** Folders **
+**Folders**
 
 * Arduino - Contains the ino files for the arduino board.
 * client - Contains the html and javascript files for the front end.

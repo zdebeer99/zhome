@@ -13,7 +13,7 @@ import (
 
 var appConfig = config.Load()
 
-//**
+//***
 func main() {
 	log.Println("Connecting to ", appConfig.InfluxServer)
 

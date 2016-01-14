@@ -2,7 +2,7 @@ package stateengine
 
 import (
 	"time"
-	"zdebeer/qwickswitch/server/config"
+	"github.com/zdebeer99/zhome/pkg/config"
 )
 
 type ChannelState struct {
