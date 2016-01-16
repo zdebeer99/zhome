@@ -19,21 +19,15 @@ This is a template for compiling client side code for a web application.
 
 ## Configuring the environment
 
-Install node applications
+Install node applications.
+
+Nodejs is required to build the javascript libraries.
 
 ```bash
 npm install gulp -g
-npm install typescript -g
-npm install tsd -g
 ```
 
 Install libraries
-
-```bash
-npm install
-bower install
-tsd install
-```
 
 ## Compiling
 
@@ -42,7 +36,7 @@ first time compile.
 ```bash
 npm install
 bower install
-gulp
+gulp build
 ```
 
-Simply run 'gulp', this will compile the client html files and javascript libraries. a folder called static will be created in the root folder of this project containing all the required files for the client side.
+When developing you can simply run gulp, this will watch for changes and build the client side code once changes in the source code was made.
