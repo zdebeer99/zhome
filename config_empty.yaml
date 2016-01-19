@@ -1,4 +1,4 @@
-InfluxServer : 10.0.0.115/zhome
+Database : "localhost/zhome"
 BindAddress : ":3001"
 Devices :
   - Name : ""

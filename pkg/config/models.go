@@ -1,11 +1,11 @@
 package config
 
 type Config struct {
-	BindAddress  string     `yaml:"BindAddress"`
-	InfluxServer string     `yaml:"InfluxServer" `
-	Devices      []Device   `yaml:"Devices"`
-	Scheduler    []Schedule `yaml:"Scheduler"`
-	Triggers     []Trigger  `yaml:"Triggers"`
+	BindAddress string     `yaml:"BindAddress"`
+	Database    string     `yaml:"Database" `
+	Devices     []Device   `yaml:"Devices"`
+	Scheduler   []Schedule `yaml:"Scheduler"`
+	Triggers    []Trigger  `yaml:"Triggers"`
 }
 
 type Device struct {
@@ -25,6 +25,7 @@ type Channel struct {
 	ChannelType string   `yaml:"ChannelType" json:"channelType"`
 	Address     string   `yaml:"Address" json:"address"`
 	Enabled     bool     `yaml:"Enabled" json:"enabled"`
+	Watt        float64  `yaml:"Watt" json:"watt"`
 }
 
 type Schedule struct {

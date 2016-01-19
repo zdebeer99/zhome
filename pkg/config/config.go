@@ -24,14 +24,12 @@ func Load() *Config {
 	if err != nil {
 		log.Fatalf("Failed to parse config.yaml file. exciting! parse error %s", err)
 	}
-	log.Println("Loaded InfluxDB", cf.InfluxServer)
-	if cf.InfluxServer == "" {
-		cf.InfluxServer = "localhost:8086"
+	if cf.Database == "" {
+		cf.Database = "localhost/zhome"
 	}
 	if cf.BindAddress == "" {
 		cf.BindAddress = ":3001"
 	}
-
 	return &cf
 }
 

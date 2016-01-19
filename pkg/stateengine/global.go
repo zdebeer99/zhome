@@ -40,3 +40,14 @@ func AllChannelStates() []ChannelState {
 	}
 	return states
 }
+
+func FindChannel(address string) *config.Channel {
+	for _, div := range AppConfig.Devices {
+		for _, ch := range div.Channels {
+			if ch.Name == address {
+				return &ch
+			}
+		}
+	}
+	return nil
+}

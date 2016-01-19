@@ -1,5 +1,5 @@
 #update 11-01-2016 2
-InfluxServer : "http://127.0.0.1:8086"
+Database : "127.0.0.1/zhome"
 BindAddress : ":3001"
 Devices :
   # Qwick Switch Device
@@ -16,6 +16,7 @@ Devices :
         Tags : ["Light"]
         ChannelType : "boolout"
         Address : "@190740"
+        Watt : 126
   # Arduino Located at Kitchen Device
   - Name : "arduino01"
     Enabled : true
@@ -30,6 +31,7 @@ Devices :
         Tags : ["Light"]
         ChannelType : "boolout"
         Address : "2"
+        Watt : 12
 
       - Name : "eetkamerlig"
         Enabled : true
@@ -37,6 +39,7 @@ Devices :
         Tags : ["Light"]
         ChannelType : "boolout"
         Address : "3"
+        Watt : 7
 
       - Name : "buitelig01"
         Enabled : true
@@ -44,6 +47,7 @@ Devices :
         Tags : ["Light"]
         ChannelType : "boolout"
         Address : "5"
+        Watt : 25
 
       - Name : "open01"
         Enabled : false
@@ -51,6 +55,7 @@ Devices :
         Tags : [""]
         ChannelType : "boolout"
         Address : "4"
+        Watt : 0
 
       - Name : "temp01"
         Enabled : true

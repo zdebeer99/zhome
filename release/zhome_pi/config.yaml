@@ -1,0 +1,115 @@
+#update 11-01-2016 2
+Database : "10.0.0.115/zhome"
+BindAddress : "0.0.0.0:80"
+Devices :
+  # Qwick Switch Device
+  - Name : "qwikswitch01"
+    Enabled : true
+    Description : "Qwick Switch 01"
+    Tags : [""]
+    DeviceType: "qwikswitch"
+    Connection : "http://10.0.0.115:2020"
+    Channels :
+      - Name : "tvkamer"
+        Enabled : true
+        Description : "TV Kamer"
+        Tags : ["Light"]
+        ChannelType : "boolout"
+        Address : "@190740"
+  # Arduino Located at Kitchen Device
+  - Name : "arduino01"
+    Enabled : true
+    Description : "Kitchen Arduino"
+    Tags : [""]
+    DeviceType: "zioboard"
+    Connection : "/dev/ttyUSB0"
+    Channels :
+      - Name : "kombuislig"
+        Enabled : true
+        Description : "Kombuis"
+        Tags : ["Light"]
+        ChannelType : "boolout"
+        Address : "2"
+
+      - Name : "eetkamerlig"
+        Enabled : true
+        Description : "Eet Kamer"
+        Tags : ["Light"]
+        ChannelType : "boolout"
+        Address : "3"
+
+      - Name : "buitelig01"
+        Enabled : true
+        Description : "Buite Lig"
+        Tags : ["Light"]
+        ChannelType : "boolout"
+        Address : "5"
+
+      - Name : "open01"
+        Enabled : false
+        Description : "Open Relay"
+        Tags : [""]
+        ChannelType : "boolout"
+        Address : "4"
+
+      - Name : "temp01"
+        Enabled : true
+        Description : "Leef Area"
+        Tags : ["temperature","humidity","sensor","living_room"]
+        ChannelType : "dht22"
+        Address : "8"
+
+Triggers :
+  - Name : "sw1-eetkamer"
+    EventName : "switch@192d31"
+    Command :
+      - "toggle eetkamerlig"
+
+  - Name : "sw1-kombuis"
+    EventName : "switch@192d32"
+    Command :
+      - "toggle kombuislig"
+
+  - Name : "sw1-buitelig"
+    EventName : "switch@192d36"
+    Command :
+      - "toggle buitelig01"
+
+  - Name : "sw2-kombuis"
+    EventName : "switch@198133"
+    Command :
+      - "toggle kombuislig"
+
+  - Name : "sw2-buitelig"
+    EventName : "switch@198134"
+    Command :
+      - "toggle buitelig01"
+
+Scheduler :
+  - Name : "nighttimeon01"
+    When : "0 0 18 * * ?"
+    Command :
+      - "on kombuislig"
+      - "on tvkamer"
+
+  - Name : "nighttimeon02"
+    When : "0 30 18 * * ?"
+    Command :
+      - "on buitelig01"
+
+  - Name : "nighttimeoff01"
+    When : "0 0 23 * * ?"
+    Command :
+      - "off kombuislig"
+      - "off tvkamer"
+
+  - Name : "nighttimeoff02"
+    When : "0 5 23 * * ?"
+    Command :
+      - "off buitelig01"
+      - "off eetkamerlig"
+
+  - Name : "logtemperature"
+    When : "0 0/1 * * * ?"
+    Command :
+      - "logsensor temp01"

@@ -103,7 +103,6 @@ func (this *StateEngine) RequestValue(channelId string) ChannelValue {
 	} else {
 		return ChannelValue{StatusCode: 1, StatusText: fmt.Sprintf("channel '%s' not found.", channelId)}
 	}
-	//panic(fmt.Errorf("channel '%s' not found.", channelId))
 }
 
 func (this *StateEngine) GetValue(channelId string) ChannelValue {
@@ -114,33 +113,4 @@ func (this *StateEngine) GetValue(channelId string) ChannelValue {
 	} else {
 		return ChannelValue{StatusCode: 1, StatusText: fmt.Sprintf("channel '%s' not found.", channelId)}
 	}
-	//return ("Error channel '" + channelId + "' not found")
-	// panic(fmt.Errorf("channel '%s' not found.", channelId))
 }
-
-// func (this *StateEngine) recieveValue(deviceid string, address string, value ValueMap) {
-// 	log.Println("stateengine Value Recieved from;", address, value)
-// 	for key, ch := range this.channels {
-// 		if ch.Device.ID() == deviceid && ch.Address == address {
-// 			this.checkTrigger(key, value)
-// 		}
-// 	}
-// }
-
-// func (this *StateEngine) checkTrigger(channelId string, value ValueMap) {
-// 	for _, trigger := range this.triggers {
-// 		if trigger.ChannelId == channelId {
-// 			this.execCommand(trigger.Commands)
-// 		}
-// 	}
-// }
-
-// func (this *StateEngine) execCommand(commands []Command) {
-// 	for _, cmd := range commands {
-// 		if cmd.Command == "toggle" {
-// 			this.cmdToggel(cmd.ChannelId)
-// 			return
-// 		}
-// 		log.Println("Could not execute command;", cmd.Command)
-// 	}
-// }

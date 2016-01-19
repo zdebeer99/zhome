@@ -5,9 +5,9 @@ import (
 	"github.com/gorilla/mux"
 	"github.com/zdebeer99/weblib/handler"
 	"github.com/zdebeer99/zhome/pkg/config"
-	"github.com/zdebeer99/zhome/pkg/controllers"
 	"github.com/zdebeer99/zhome/pkg/hardware"
 	se "github.com/zdebeer99/zhome/pkg/stateengine"
+	"github.com/zdebeer99/zhome/pkg/web"
 	"log"
 )
 
@@ -15,7 +15,6 @@ var appConfig = config.Load()
 
 //***
 func main() {
-	log.Println("Connecting to ", appConfig.InfluxServer)
 
 	load(appConfig)
 
@@ -27,7 +26,7 @@ func main() {
 	r.Handle("/charts", handler.File("./static/html/charts/index.html"))
 	//r.Handle("/config", handler.File("./static/html/config/index.html"))
 	r.Handle("/", handler.File("./static/html/home/index.html"))
-	controllers.RegisterApi(r.PathPrefix("/api").Subrouter())
+	web.RegisterApi(r.PathPrefix("/api").Subrouter())
 
 	n := negroni.Classic()
 	n.UseHandler(r)

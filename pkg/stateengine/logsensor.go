@@ -4,43 +4,47 @@ This code will need review, this section is a quick and nasty lsensor loggin sol
 package stateengine
 
 import (
-	"github.com/influxdb/influxdb/client/v2"
-	"log"
+	"fmt"
+	"gopkg.in/mgo.v2"
+	"strconv"
 	"time"
 )
 
-func logSensor(addr string, value ValueMap) {
-	c, err := client.NewHTTPClient(client.HTTPConfig{
-		Addr: AppConfig.InfluxServer})
+func (this *StateEngine) cmdLogSensor(addr string) error {
+	chinfo := FindChannel(addr)
+	if chinfo == nil {
+		return fmt.Errorf("logSensor: Could not find channel '%s'.", addr)
+	}
+	value := this.RequestValue(addr)
+	session, err := mgo.Dial(AppConfig.Database)
 	if err != nil {
-		log.Println("Failed to write sensor data. ", err)
-		return
+		return fmt.Errorf("Failed to connect to database. %s", err)
 	}
-	defer c.Close()
+	defer session.Close()
 
-	// Create a new point batch
-	bp, _ := client.NewBatchPoints(client.BatchPointsConfig{
-		Database:  "home",
-		Precision: "s",
-	})
+	var m = make(map[string]interface{})
+	m["sampletime"] = time.Now()
+	m["channel"] = addr
+	m["info"] = chinfo
+	m["statusCode"] = value.StatusCode
+	if value.StatusCode != 0 {
+		m["statusText"] = value.StatusText
+	}
+	var mdata = make(map[string]interface{})
+	for k, v := range value.Data {
+		v1, err := strconv.ParseFloat(v, 64)
+		if err != nil {
+			mdata[k] = v
+		} else {
+			mdata[k] = v1
+		}
+	}
+	m["values"] = mdata
 
-	// Create a point and add to batch
-	tags := map[string]string{
-		"location":   "living room",
-		"sensor":     "temparature",
-		"sensorType": "dht22",
-		"sensorId":   "ks01",
-	}
-	fields := map[string]interface{}{
-		"temperature": value["temp"],
-		"humidity":    value["hum"],
-	}
-	pt, err := client.NewPoint(addr, tags, fields, time.Now())
+	db := session.DB("")
+	err = db.C("log_sensor").Insert(m)
 	if err != nil {
-		log.Println("Error: ", err.Error())
+		return fmt.Errorf("Failed to Insert sensor data into database. %s", err)
 	}
-	bp.AddPoint(pt)
-
-	// Write the batch
-	c.Write(bp)
+	return nil
 }

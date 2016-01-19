@@ -22,7 +22,7 @@ zhome is a home automation service that allows you to turn lights on and off usi
 * Basic Device Control from a web app.
 * Scheduler
 * [Planned] Log Sensor input to database.
-* [Planned] Log All io comms to database.
+* [Planned] Log All io comms to database and calculated electricity usage.
 
 zhome uses go, coffeescript and jade
 

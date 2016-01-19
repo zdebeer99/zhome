@@ -1,5 +1,5 @@
 #update 11-01-2016 2
-InfluxServer : "http://10.0.0.115:8086"
+Database : "10.0.0.115/zhome"
 BindAddress : "0.0.0.0:80"
 Devices :
   # Qwick Switch Device

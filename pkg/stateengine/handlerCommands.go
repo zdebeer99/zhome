@@ -58,8 +58,10 @@ func (this *StateEngine) execCommand(cmd string, args []string) error {
 	case "read":
 		return fmt.Errorf("'read' not implemented yet")
 	case "logsensor":
-		log.Println("logsensor called")
-		return fmt.Errorf("'logsensor' not implemented yet")
+		if len(args) < 1 {
+			return fmt.Errorf("'logSensor' command expects 1 argument containning a channel id.")
+		}
+		return this.cmdLogSensor(args[0])
 	}
 	return nil
 }
