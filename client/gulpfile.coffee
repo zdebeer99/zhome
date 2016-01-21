@@ -19,10 +19,6 @@ files =
   coreJS: [
     'bower_components/jquery/dist/jquery.min.js'
     'bower_components/lodash/lodash.min.js'
-    #'bower_components/fastclick/lib/fastclick.js'
-    #'bower_components/viewport-units-buggyfill/viewport-units-buggyfill.js'
-    #'bower_components/tether/tether.js'
-    #'bower_components/hammerjs/hammer.js'
     'bower_components/angular/angular.min.js'
     'bower_components/angular-route/angular-route.min.js'
     'bower_components/angular-aria/angular-aria.min.js'
@@ -37,9 +33,7 @@ files =
     'bower_components/angular-material/angular-material.min.css'
   ]
   vendor: [
-    'bower_components/morris.js/morris.min.js'
-    'bower_components/raphael/raphael-min.js'
-    'bower_components/angular-morris-chart/src/angular-morris-chart.min.js'
+    'bower_components/d3/d3.min.js'
   ]
 
 gulp.task 'default', ['buildwatch']
@@ -71,7 +65,7 @@ gulp.task 'app:home', ->
   ]
 
 gulp.task 'app:css', ->
-  gulp.src paths.base + 'css/*.css'
+  gulp.src paths.src + 'css/*.css'
   .pipe $.concat 'app.css'
   .pipe gulp.dest paths.build
   .pipe gulp.dest dest "css"

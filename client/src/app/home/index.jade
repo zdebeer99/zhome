@@ -1,10 +1,10 @@
 extends ../_layout.jade
 
 block head
+  link(rel="stylesheet", type="text/css", href="/css/app.css")
+  script(type="application/javascript", src="/js/d3.min.js")
   script(type="application/javascript", src="/js/home.js")
 
 block content  
-  //- md-button(ng-href="/#/") Home
-  //-md-button(href="/config#/") Config
   div(ng-view flex layout="column")
   div {{statusText}}
