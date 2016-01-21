@@ -22,13 +22,13 @@
   ],
   "dependencies": {
     "jquery": "~2.1.4",
-    "modernizr": "~2.8.3",
     "lodash": "~3.10.0",
     "angular": "~1.4.7",
     "angular-route": "~1.4.7",
     "angular-material": "~1",
     "angular-messages": "~1.4.8",
     "moment": "~2.10.6",
-    "Chart.js": "~1.0.2"
+    "mdi": "~1.4.57",
+    "material-design-icons": "~2.1.3"
   }
 }

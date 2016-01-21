@@ -21,8 +21,13 @@ zhome is a home automation service that allows you to turn lights on and off usi
 
 * Basic Device Control from a web app.
 * Scheduler
-* [Planned] Log Sensor input to database.
+* [Done] Log Sensor input to database.
 * [Planned] Log All io comms to database and calculated electricity usage.
+* [Planned] Show Sensor output in a graph.
+* [Planned] Support profiles for Scheduler.
+* [Planned] Edit configuration from web pages.
+* [Planned] Websocket updates.
+
 
 zhome uses go, coffeescript and jade
 
@@ -54,3 +59,30 @@ sudo cp ./scripts/zhome.service /etc/systemd/system
 sudo systemctl enable zhome
 sudo service zhome start
 ```
+
+## Config File
+
+config.yaml
+
+
+## Adding your Own Device
+
+You can add your own device by creating a adopter with the interface below.
+
+```go
+type DeviceComm interface {
+  ID() string
+  RegisterChannel(id string, address string, chType string)
+  // RegisterEventHandler() will be removed, events will use a channel instead.
+  RegisterEventHandler(handler EventHandler)
+  Start()
+  Stop()
+  Status() *Status
+  GetValue(chAddress string) (ValueMap, error)
+  SetValue(chAddress string, value ValueMap) error
+}
+```
+
+Create a folder in 'pkg/hardware/' and copy your adapter.
+
+Add the name of your device in 'pkg/hardware/hardware.go' so that it can be loaded when configured.
