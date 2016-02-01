@@ -1,0 +1,32 @@
+--old routing function
+function route(path,args)
+  local data = {cmd="OK"};
+  local cmd = path[2];
+  if (cmd=="") then
+    return data
+  elseif (cmd=="mode") then
+    data.pin = args.pin
+    if args.value~=nil then
+      print("setmode", args.pin, args.value)
+      setmode(args.pin, args.value)
+      return data
+    else
+      print("getmode", args.pin)
+      data.value = getmode(args.pin)
+      return data
+    end
+  elseif (cmd=="set") then
+    data.pin = args.pin
+    if args.value~=nil then
+      print("setpin", args.pin, args.value)
+      setpin(args.pin, args.value)
+      return data
+    else
+      print("getpin", args.pin)
+      data.value = getpin(args.pin)
+      return data
+    end
+  end
+  data.cmd="Invalid Command"
+  return data
+end

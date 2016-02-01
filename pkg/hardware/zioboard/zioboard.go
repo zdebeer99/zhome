@@ -7,6 +7,7 @@ import (
 	"github.com/tarm/serial"
 	"log"
 	"strings"
+	"sync"
 	"time"
 )
 
@@ -26,6 +27,7 @@ const (
 )
 
 type ZIOBoard struct {
+	mutex      *sync.Mutex
 	connection string
 	port       *serial.Port
 	running    bool
@@ -34,7 +36,7 @@ type ZIOBoard struct {
 }
 
 func NewZIOBoard(connection string) *ZIOBoard {
-	return &ZIOBoard{connection: connection, state: "new"}
+	return &ZIOBoard{mutex: &sync.Mutex{}, connection: connection, state: "new"}
 }
 
 func (this *ZIOBoard) Open() error {
@@ -124,6 +126,8 @@ func (this *ZIOBoard) waitResponse() (data string, err error) {
 }
 
 func (this *ZIOBoard) Send(data []byte) (r string, err error) {
+	this.mutex.Lock()
+	defer this.mutex.Unlock()
 	r = ""
 	_, err = this.port.Write(data)
 	if err != nil {
@@ -161,7 +165,6 @@ func parseResponse(packet string) (r string, err error) {
 			err = errors.New(packet[1 : len(packet)-1])
 		} else {
 			err = errors.New("Error recieved from arduino.")
-			panic(err)
 		}
 		return
 	}

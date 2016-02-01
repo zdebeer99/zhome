@@ -69,14 +69,10 @@ func (this *StateEngine) execCommand(cmd string, args []string) error {
 func (this *StateEngine) cmdToggel(channelId string) error {
 	val := this.GetValue(channelId)
 	var r1 ChannelValue
-	if val.StatusCode == 0 {
-		if val.Data.Value() == "off" {
-			r1 = this.SetValue(channelId, "on")
-		} else {
-			r1 = this.SetValue(channelId, "off")
-		}
+	if val.Data.Value() == "off" {
+		r1 = this.SetValue(channelId, "on")
 	} else {
-		return fmt.Errorf("toggle command recieved error from channel '%s'. %s", channelId, val.StatusText)
+		r1 = this.SetValue(channelId, "off")
 	}
 	if r1.StatusCode > 0 {
 		return fmt.Errorf("toggle command could not set value on channel '%s'. %s", channelId, val.StatusText)

@@ -110,6 +110,6 @@ Scheduler :
       - "off eetkamerlig"
 
   - Name : "logtemperature"
-    When : "0 0/1 * * * ?"
+    When : "0 0/10 * * * ?"
     Command :
       - "logsensor temp01"

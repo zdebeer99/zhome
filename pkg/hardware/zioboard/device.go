@@ -2,10 +2,10 @@ package zioboard
 
 import (
 	"fmt"
+	se "github.com/zdebeer99/zhome/pkg/stateengine"
 	"log"
 	"strings"
 	"time"
-	se "github.com/zdebeer99/zhome/pkg/stateengine"
 )
 
 type pinInfo struct {
@@ -106,10 +106,10 @@ func (this *ZIOBoardDevice) Stop() {
 
 func (this *ZIOBoardDevice) GetValue(address string) (value se.ValueMap, err error) {
 	value = se.NewValueMap("")
-	if !this.OK() {
-		err = fmt.Errorf("arduino device %s is in error state. %s", address, value)
-		return
-	}
+	// if !this.OK() {
+	// 	err = fmt.Errorf("arduino device %s is in error state. %s", address, value)
+	// 	return
+	// }
 	if pin, ok := this.pins[address]; ok {
 		if pin.mode == MODE_INPUT {
 			if pin.chType == "dht22" {

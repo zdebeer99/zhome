@@ -93,7 +93,6 @@ func (this *StateEngine) SetValue(channelId string, value string) ChannelValue {
 }
 
 func (this *StateEngine) RequestValue(channelId string) ChannelValue {
-	log.Println("RequestValue ", channelId)
 	if ch, ok := this.channels[channelId]; ok {
 		value, err := ch.Device.GetValue(ch.Address)
 		ch.SetValue(value)
@@ -106,9 +105,7 @@ func (this *StateEngine) RequestValue(channelId string) ChannelValue {
 }
 
 func (this *StateEngine) GetValue(channelId string) ChannelValue {
-	log.Println("GetValue ", channelId)
 	if ch, ok := this.channels[channelId]; ok {
-		log.Println("GetValue Result", ch.Value)
 		return ch.Value
 	} else {
 		return ChannelValue{StatusCode: 1, StatusText: fmt.Sprintf("channel '%s' not found.", channelId)}
